@@ -1,0 +1,21 @@
+#include<stdio.h>
+void tower(int,char,char,char);
+int main()
+{
+  int n=3;
+  tower(n,'A','B','C');
+}
+void tower(int n,char f,char s,char t)
+{
+    if(n==1)
+    {
+      printf("%c -> %c \n",f,t);
+      return;
+    }
+    else
+    {
+       tower(n-1,f,t,s);
+       printf("%c -> %c \n",f,t);
+       tower(n-1,s,f,t);
+    }
+}
