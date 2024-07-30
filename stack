@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<stdlib.h>
+int top=-1;
+void inser();
+void del();
+void show();
+#define max 5
+int a[max];
+int main()
+{
+  	int ch=0;
+  	do
+  	{
+  	
+  	printf("1:insert");
+  	printf("2:delete");
+  	scanf("%d",&ch);
+  	switch(ch)
+  	{
+  	
+  		case 1:
+  			inser();
+  			break;
+  		case 2:
+  			del();
+  			break;
+  		case 3:
+  			show();
+  			break;
+  		case 4:
+  			exit(0);
+		default:
+			printf("invalid");
+  	}
+  	}while(ch<=3);
+  	return 0;
+}
+void inser()
+{
+	if(top==max-1)
+		printf("overflow");
+	else
+	{
+    	top++;
+       printf("insert elements");
+       scanf("%d",&a[top]);
+       return ;
+       }
+}
+void del()
+{
+	if(top==-1)
+		printf("underflow");
+	else
+	{
+	top--;
+}}
+void show()
+{
+	for(int i=top-1;i>=0;i--)
+		printf("%d ",a[i]);
+}
