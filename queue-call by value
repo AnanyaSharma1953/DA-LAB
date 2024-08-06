@@ -1,0 +1,85 @@
+#define max 10
+#include<stdlib.h>
+#include<stdio.h>
+int enq(int[],int);
+int deq(int[],int,int);
+void dis(int[],int,int);
+void peek(int[],int);
+int main()
+{
+	int f=-1,r=-1,ch,q[max];
+	
+	do
+	{
+		printf("1:insert \n 2:delete\n 3:display \n 4:peek \n 5:exit\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:
+				r=enq(q,r);
+				if(f==-1)
+					f=0;
+				break;
+			case 2:
+				f=deq(q,f,r);
+				if(f==-1)
+					r=-1;
+				break;
+			case 3:
+				dis(q,f,r);
+				break;
+			case 4:
+				peek(q,f);
+				break;
+			case 5:
+				exit(0);
+			default:
+				printf("invalid");		
+		}
+	}while(ch<=5);
+}
+int enq(int q[],int r)
+{
+	if(r==max-1)
+		printf("overflow");
+	else
+	{
+		int x;
+		scanf("%d",&x);
+		q[++r]=x;
+	}
+	return r;
+}
+int deq(int q[],int f,int r)
+{
+	if(f==-1&&r==-1)
+		printf("underflow");
+	else
+	{
+		int x=q[f];
+		printf("%d",x);
+		if(f==r)
+			f=-1;
+		else
+			f++;
+	}
+	return f;
+}
+void dis(int q[],int f,int r)
+{
+	if(f==-1&&r==-1)
+		printf("empty");
+	else
+	{
+		for(int i=f;i<=r;i++)
+			printf("%d ",q[i]);
+		
+	}
+}
+void peek(int q[],int f)
+{
+if(f==-1)
+	printf("empty");
+else
+	printf("%d",q[f]);
+}
