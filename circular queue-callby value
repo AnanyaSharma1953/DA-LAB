@@ -1,0 +1,83 @@
+#define max 5
+#include<stdlib.h>
+#include<stdio.h>
+int enq(int[],int,int);
+int deq(int[],int,int);
+void dis(int[],int,int);
+int main()
+{
+	int f=-1,r=-1,ch,q[max];
+	
+	do
+	{
+		printf("1:insert \n 2:delete\n 3:display \n 4:exit\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:
+				r=enq(q,f,r);
+				if(f==-1)
+				    f=0;
+				break;
+			case 2:
+				f=deq(q,f,r);
+				 if(f==-1)
+				 	r=-1;
+				break;
+			case 3:
+				dis(q,f,r);
+				break;
+			case 4:
+				exit(0);
+			default:
+				printf("invalid");		
+		}
+	}while(ch<=4);
+}
+int enq(int q[],int f,int r)
+{
+	if((r+1)%max==f)
+		printf("overflow");
+	else
+	{
+		int x;
+		scanf("%d",&x);
+		r=(r+1)%max;
+		q[r]=x;
+	}
+	return r;
+}
+int deq(int q[],int f,int r)
+{
+	if(f==-1&&r==-1)
+		printf("underflow");
+	else
+	{
+		int x=q[f];
+		printf("%d",x);
+		if(f==r)
+			f=-1;
+		else
+			f=(f+1)%max;
+	}
+return f;
+}
+void dis(int q[],int f,int r)
+{
+	if(f==-1&&r==-1)
+		printf("empty");
+	else
+	{  /*
+		for(int i=f;i!=(r+1)%max;i=(i+1)%max)
+			printf("%d ",q[i]);
+		*/
+		
+		do
+		{
+
+		   printf("%d ",q[f]);
+		  f=(f+1)%max;
+		}while(f!=r);
+		   printf("%d ",q[f]);
+	}
+}
