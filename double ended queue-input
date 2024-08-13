@@ -1,0 +1,101 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 5
+int inser_rear(int[],int);
+int del_front(int[],int,int);
+int del_rear(int[],int,int);
+void dis(int[],int,int);
+int main()
+{
+	int ch,f=-1,r=-1,q[max];
+	do
+	{
+	printf("enter 1:inseratrear \n 2:delatfront \n 3:del at rear \n");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1:
+			r=inser_rear(q,r);
+			if(f==-1)
+				f=0;
+			break;
+		case 2:
+			f=del_front(q,f,r);
+			if(f==-1)
+				r=-1;
+			break;
+		case 3:
+			r=del_rear(q,r,f);
+			if(r==-1)
+				f=-1;
+			break;
+		case 4:
+			dis(q,f,r);
+			break;
+		case 5:
+			exit(0);
+		default:
+			printf("invalid");
+			
+	}
+	}while(ch<=4);
+}
+void dis(int q[],int f,int r)
+{
+	if(f==-1&&r==-1)
+		printf("empty");
+	else
+	{
+		do
+		{
+			printf("%d ",q[f++]);
+			}while(f<=r);
+		
+	}
+}
+int inser_rear(int q[],int r)
+{
+	if(r==(max-1))
+	printf("overflow");
+	else
+	{
+	int x;
+	printf("enter element \n");
+	scanf("%d",&x);
+	r++;
+	q[r]=x;	
+	}
+return r;
+}
+int del_front(int q[],int f,int r)
+{
+	if(f==-1&&r==-1)
+		printf("underflow");
+	else
+	{
+		int x=q[f];
+		
+		printf("element deletedfromfront %d\n",x);
+		if(f==r)
+		  f=-1;
+		 else
+		   f++;
+		
+	}
+return f;
+}
+int del_rear(int q[],int r,int f)
+{
+	if(f==-1&&r==-1)
+		printf("underflow");
+	else
+	{
+		printf("element delfromrearendis %d\n",q[r]);
+		if(f==r)
+		  r=-1;
+		 else
+		   r--;
+	}	  
+		return r;
+	
+}
