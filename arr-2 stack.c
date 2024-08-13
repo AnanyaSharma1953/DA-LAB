@@ -3,7 +3,7 @@
 #include<stdlib.h>
 int inser(int[],int,int);
 int del(int[],int);
-void show(int[],int,int);
+void show(int[],int);
 void peek(int[],int);
 int main()
 {
@@ -32,10 +32,10 @@ int main()
   			t2=del(arr,t2);
   			break;
   		case 5:
-  			show(arr,t1,m1);
+  			show(arr,t1);
   			break;
   		case 6:
-  		 	show(arr,t2,m2);
+  		 	show(arr,t2);
   		 	break;
   		 case 7:
   		 	peek(arr,t1);
@@ -70,7 +70,8 @@ int del(int a[],int top)
 		printf("underflow");
 	else
 	{
-	top--;
+	
+	printf("delelted ele is = %d",a[top]);top--;
 }
 	return top;
 }
@@ -84,9 +85,21 @@ void peek(int stack[],int top)
    printf("%d",stack[top]);
 }
 }
-void show(int stack[],int top,int m)
+void show(int stack[],int top)
 {
-	for(int i=top;i>=m;i--)
+	int i;
+	if(top<=(max/2))
+	{
+	
+	for(i=top;i>=0;i--)
 		printf("%d ",stack[i]);
+	}
+	else
+	
+	{
+	for(i=top;i>=(max/2);i--)
+		printf("%d ",stack[i]);
+	
+	}
 }
 		
