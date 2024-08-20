@@ -8,7 +8,7 @@ int main()
 {
 	int i=0,pos=0,top=-1;
   	char stack[max],postfix[max],ch,x,y;
-  	char infix[max]={'(','a','*','b',')','-','c','+','d','/','e','^','f','\0'};	
+  	char infix[max]={'(','a','*','b',')','-','(','c','+','d',')','/','e','^','f','\0'};	
   	while(infix[i]!='\0')
   	{
   		ch=infix[i];
@@ -30,28 +30,23 @@ int main()
   		x=pop(stack,&top);	
   		}
   		}
-  		else
-  		{
-  			x=stack[top];
-  			while(pred(x)>=pred(ch))
-  			{
-  			postfix[pos++]=x;
-  			x=pop(stack,&top);
-  			}
-  			push(stack,ch,&top);
-  			
-  		}
-  		
-  		i++;
-  	}
-  	postfix[pos++] = '\0';
-  	y=0;
-  	while(y<=pos)
-  	{
-  		printf("%c ",postfix[y++]);
-  	}
-  	
-  	return 0;
+  	else {
+            while (top != -1 && pred(stack[top]) >= pred(ch)) {
+                postfix[pos++] = pop(stack, &top);
+            }
+            push(stack, ch, &top);
+        }
+        i++;
+    }
+
+    while (top != -1) {
+        postfix[pos++] = pop(stack, &top);
+    }
+
+    postfix[pos] = '\0';
+    printf("Postfix Expression: %s\n", postfix);
+
+    return 0;
 }
 void push(char stack[],char ch,int *top)
 {
