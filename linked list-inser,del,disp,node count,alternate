@@ -1,0 +1,66 @@
+#include<stdlib.h>
+#include<stdio.h>
+typedef struct list
+{
+	int data;
+	struct list *next;
+}s;
+int main() {
+    s *head = NULL, *tail = NULL, *temp = NULL;
+    int ch, x;
+    while (1)
+    {
+        temp = (s*)malloc(sizeof(s)); 
+        scanf("%d", &x);
+        temp->data = x;
+        temp->next = NULL; 
+        if (head == NULL) 
+            head = temp;
+        else 
+            tail->next = temp; 
+        tail = temp;
+        scanf("%d", &ch);
+        if (ch == 0)
+            break;
+    }
+    s *p=NULL,*tp=NULL;int n=0,en=0,on=0;
+    //delete last node
+    p=head;
+    while(p->next->next!=NULL)
+    {
+    	p=p->next;
+    }
+    	
+    p->next=NULL;
+    // Print the linked list
+    temp = head;
+    while (temp != NULL) {
+    n++;
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+    if(n%2!=0)
+    {
+    en=n/2;
+    	on=(n/2)+1;
+    	}
+    	else
+    	on=en=n/2;
+    printf("total node :%d \n",n);
+    printf("total even node :%d \n",en);
+    printf("total odd node :%d \n",on);
+    //print in alternate order
+    temp = head;
+    int count = 0; // Counter to track node position
+    while (temp != NULL)
+    {
+        if(count % 2 == 1) 
+        { 
+            printf("%d  ", temp->data);
+        }
+        count++;
+        temp = temp->next;
+    }
+    return 0;
+}
