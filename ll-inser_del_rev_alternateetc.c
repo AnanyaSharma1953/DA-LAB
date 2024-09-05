@@ -14,6 +14,7 @@ l* del_last(l*);
 void disp_rev(l*);
 l* del_secondlast(l*);
 void disp_alternate(l*);
+l*  inser_ataparticular(l*);
 void dis(l*);
 main()
 {
@@ -56,9 +57,12 @@ main()
 		case 10:
 			disp_alternate(pt);
 			break;
+		case 11:
+			f= inser_ataparticular(pt);
+			break;
 	}
 	
-	}while(c<=10);
+	}while(c<=11);
 	
 }
 l* insert_last(l *pt)
@@ -183,9 +187,11 @@ void disp_alternate(l* p)
 }
 l* inser_ataparticular(l* p)
 {
-	int x,c=0,v=0;
+	int x,c=0,v=0,a=0;
 	printf("\n enter x\n");
 	scanf("%d",&x);
+	printf("enter value");
+	scanf("%d",&a);
 	l *f1=p,*f2=p;
 	while(f1->d!=x)
 	{
@@ -193,12 +199,27 @@ l* inser_ataparticular(l* p)
 		f1=f1->next;	
 	}
 	while(c!=1)
+	{
 		f2=f2->next;
-	f1=f1->next;
-	printf("enter 1: before 2:after \n");
+		c--;
+	}
+	printf("1:before 2:after");
 	scanf("%d",&v);
 	if(v==1)
 	{
-		
+		l *p1=NULL;
+		p1=(l*)malloc(sizeof(l));
+		f2->next=p1;
+		p1->d=a;
+		p1->next=f1;
+		return f2;
+	}
+	else
+	{
+		l *p1=NULL;
+		p1=(l*)malloc(sizeof(l));
+		p1->d=a;p1->next=f2->next->next;
+		f1->next=p1;
+		return f1;
 	}
 }
