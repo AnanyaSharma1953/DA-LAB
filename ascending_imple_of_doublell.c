@@ -1,46 +1,38 @@
-void enq(q **f,q **r)
+void enq(l **f,l **r)
 {
-	q *p=NULL;
-	p=(q*)malloc(sizeof(q));
-	if(p!=NULL)
-	{
-		int x=0;
-		scanf("%d",&x);
-		p->d=x;
-		p->next=NULL;
-		if(*r==NULL&&*f==NULL)
-		{
-		p->prev=NULL;
-		*f=*r=p;
-		return ;
-		}
-		else if((p->d)<((*f)->d))
-		{
-			p->next=*f;
-			(*f)->prev=p;
-			*f=p;
-			(*f)->prev=NULL;	
-		}
-		else
-		{
-		 q *m = *f;
-       		 while (m->next != NULL && m->next->d < x) 
-       		 {
-           		 m = m->next;
-        	}
-        	p->next = m->next;
-        	if (m->next != NULL) 
-        	{
-            	m->next->prev = p;
-        	}
-        	else 
-        	{  
-            *r = p; 
+	l *p=NULL;
+    p=(l*)malloc(sizeof(l));
+    printf("enter element");
+    scanf("%d",&p->d);
+    p->next=NULL;
+    p->prev=NULL;
+    if(*f==NULL&&*r==NULL)
+    {
+        *f=*r=p;
+    }
+    else if((*r)->d<p->d)
+    {
+        p->prev=*r;
+        (*r)->next=p;
+        *r=p;
+    }
+    else if(p->d<(*f)->d)
+    {
+        (*f)->prev=p;
+        p->next=*f;
+        *f=p;
+    }
+    else
+    {
+        l *pp=NULL;
+        pp=*f;
+        while(pp->next->d<p->d)
+        {
+           pp=pp->next;
         }
-        p->prev = m;
-        m->next = p;
-			
-		}
-	}
-		
+        p->prev=pp;
+        pp->next->prev=p;
+        p->next=pp->next;
+        pp->next=p;
+    }
 }
