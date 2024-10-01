@@ -30,6 +30,7 @@ int main()
 		}
 	}while(ch<=3);	
 }
+//RECURSIVE
 void kill(s* f, int k) {
     if (f->next == f) {
         printf("The survivor is person number %d\n", f->d);
@@ -49,7 +50,27 @@ void kill(s* f, int k) {
         kill(t->next, k);
     }
 }
-
+/*NORMAL ITERATIVE
+void kill(s* f, int k) 
+{
+    while (f->next != f) 
+    {
+        s* t = f;
+        int y = 1;
+        while (y < k-1) 
+	{
+            y++;
+            t = t->next;
+        }
+        s* to = t->next;
+        t->next = to->next;
+        printf("Person number %d is eliminated.\n", to->d);
+        free(to);
+		f=t->next;
+    }
+    printf("The survivor is person number %d\n", f->d);
+}
+*/
 void inser(s **f,s **r)
 {
 	s *p=NULL;
