@@ -14,6 +14,21 @@ int max(t* root)
 	}
 	max(root->right);
 }
+//count nodes having common parent
+void count(t* root,int *tt)
+{
+	if(root==NULL)
+	return ;
+	else
+	{
+	if(root->right!=NULL && root->left!=NULL)
+	{
+		(*tt)=(*tt)+1;
+	}
+	count(root->left,tt);
+	count(root->right,tt);
+	}
+}
 //non-recursive to find max ele
 /*
 int maxt(t * root)
