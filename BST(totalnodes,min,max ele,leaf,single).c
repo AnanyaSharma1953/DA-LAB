@@ -14,6 +14,22 @@ int max(t* root)
 	}
 	max(root->right);
 }
+//non-recursive to find max ele
+/*
+int maxt(t * root)
+{
+	if(root==NULL)
+	return 0;
+	else
+	{
+		while((root->right)!=NULL)
+		{
+			root=root->right;
+		}
+		return (root->d);
+	}
+}
+*/
 int min(t* root)
 {
 	if(root->left==NULL)
